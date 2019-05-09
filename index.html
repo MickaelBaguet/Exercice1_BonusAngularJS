@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="script.js"></script>
+  <title>Exercice 1</title>
+</head>
+<body ng-app>
+  <div class="container-fluid text-center">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-3">Exercice 1</h1>
+        <p class="lead">Partie Bonus</p>
+        <p>Faire un formulaire de saisie d'adresse e-mail. Si l'adresse comporte le symbole @, alors une div verte apparait. S'il n'est pas là, une div rouge apparaît pour avertir l'utilisateur que sa saisie est incorrecte.</p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+        <!-- EMAIL -->
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" ng-model="email" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/">
+          <!-- Affiche un message d'erreur si l'email n'est pas valide -->
+          <div ng-show="userForm.email.$invalid && userForm.email.$dirty" class="alert alert-danger">Entrez une email valide.</div>
+          <!-- Affiche un message de validation si l'email est valide ... -->
+          <!-- ... et que le formulaire a déjà été utilisé par l'utilisateur (évite son affiche par défaut) ... -->
+          <!-- ... et que le champ n'est pas vide -->
+          <div ng-show="userForm.email.$valid && !userForm.email.$pristine && !email == ''" class="alert alert-success">Email valide.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
